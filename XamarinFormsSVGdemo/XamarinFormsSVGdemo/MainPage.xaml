@@ -2,13 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamarinFormsSVGdemo"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="XamarinFormsSVGdemo.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0,20,0,0"/>
+        </OnPlatform>
+    </ContentPage.Padding>
+    <Grid>
+        <Label Text="Xamarin Forms load SVG" 
+               HorizontalOptions="Center" />
+        <skia:SKCanvasView PaintSurface="SKCanvasView_PaintSurface"/>
+    </Grid>
 
 </ContentPage>
