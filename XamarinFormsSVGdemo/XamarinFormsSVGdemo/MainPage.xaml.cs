@@ -30,7 +30,7 @@ namespace XamarinFormsSVGdemo
                 return;
             }
             SKCanvas canvas = e.Surface.Canvas;
-            canvas.Clear();
+            canvas.Clear(Color.DarkGray.ToSKColor()); //reset canvas with custom color
 
             var centerX = (float) container.Width / 2;
             var centerY = (float) container.Height / 2;
@@ -42,7 +42,14 @@ namespace XamarinFormsSVGdemo
             
             using (var paint = new SKPaint()) //Note: be sure to create & use SKPaint object
             {
-                canvas.DrawPicture(svg.Picture, 0, 0, paint);
+                //SKRect bounds = svg.ViewBox; // inline svg will have width=0, height=0 ViewBox
+
+                canvas.Save();
+
+                //canvas.Translate(-bounds.MidX, -bounds.MidY); //no effect when inline svg
+                canvas.DrawPicture(svg.Picture, paint);
+                
+                canvas.Restore();
             }
         }
     }

@@ -11,9 +11,14 @@
         </OnPlatform>
     </ContentPage.Padding>
     <Grid>
-        <Label Text="Xamarin Forms load SVG" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Text="Xamarin Forms load SVG string" 
                HorizontalOptions="Center" />
-        <skia:SKCanvasView PaintSurface="SKCanvasView_PaintSurface"/>
+        <skia:SKCanvasView Grid.Row="1" PaintSurface="SKCanvasView_PaintSurface"/>
     </Grid>
 
 </ContentPage>
