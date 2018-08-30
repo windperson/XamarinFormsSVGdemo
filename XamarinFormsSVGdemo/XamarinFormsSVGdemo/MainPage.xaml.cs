@@ -27,10 +27,7 @@ namespace XamarinFormsSVGdemo
             SKCanvas canvas = e.Surface.Canvas;
             canvas.Clear();
 
-            var centerX = (float)container.Width / 2;
-            var centerY = (float)container.Height / 2;
-
-            canvas.Translate(centerX, centerY);
+           
 
             var scale = (float)(e.Info.Width / container.Width);
 #if DEBUG
@@ -41,6 +38,10 @@ namespace XamarinFormsSVGdemo
 #endif
 #endif
             canvas.Scale(scale);
+            var centerX = (float)container.Width / 2;
+            var centerY = (float)container.Height / 2;
+
+            canvas.Translate(centerX, centerY);
 
             using (var stream = GetType().Assembly.GetManifestResourceStream(@"XamarinFormsSVGdemo.black_cat.svg"))
             using(var paint = new SKPaint())
@@ -48,7 +49,14 @@ namespace XamarinFormsSVGdemo
                 var svg = new SkiaSharp.Extended.Svg.SKSvg();
                 svg.Load(stream);
 
+                SKRect bounds = svg.ViewBox;
+                
+                canvas.Save();
+                
+                canvas.Translate(-bounds.MidX, -bounds.MidY);
                 canvas.DrawPicture(svg.Picture, paint);
+
+                canvas.Restore();
             }
 
         }
