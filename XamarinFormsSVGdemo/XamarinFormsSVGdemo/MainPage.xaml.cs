@@ -27,8 +27,6 @@ namespace XamarinFormsSVGdemo
             SKCanvas canvas = e.Surface.Canvas;
             canvas.Clear();
 
-           
-
             var scale = (float)(e.Info.Width / container.Width);
 #if DEBUG
 #if !WINDOWS_UWP
